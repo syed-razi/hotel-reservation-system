@@ -38,4 +38,8 @@ public class Room {
     Reservation reservation = new Reservation(reservationId, checkin, checkout);
     reservations.put(reservationId, reservation);
   }
+
+  public void updatePrice(int newPrice) {
+    price = newPrice;
+  }
 }

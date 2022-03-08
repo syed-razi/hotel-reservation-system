@@ -110,4 +110,10 @@ public class Hotel {
         return false;
     }
   }
+
+  public void changePriceOfRooms(int newPrice, int roomStart, int roomEnd) {
+    for(int i = roomStart; i <= roomEnd; i++) {
+      rooms[i].updatePrice(newPrice);
+    }
+  }
 }
