@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class Hotel {
-  private HashMap<Integer, Room> rooms = new HashMap<>();
+  private Room[] rooms = new Room[12];
 
   public Hotel() {
     Type type = Type.SINGLE;
@@ -15,7 +15,7 @@ public class Hotel {
         type = Type.KING;
       }
       Room room = new Room(i, type);
-      rooms.put(i, room);
+      rooms[i] = room;
     }
   }
 
@@ -23,7 +23,7 @@ public class Hotel {
     switch (type) {
       case SINGLE:
         for (int i = 0; i < 3; i++) {
-          Room room = rooms.get(i);
+          Room room = rooms[i];
           if (room.isAvailable(checkin, checkout)) {
             room.createReservation(checkin, checkout);
             break;
@@ -33,7 +33,7 @@ public class Hotel {
         break;
       case DOUBLE:
         for (int i = 3; i < 6; i++) {
-          Room room = rooms.get(i);
+          Room room = rooms[i];
           if (room.isAvailable(checkin, checkout)) {
             room.createReservation(checkin, checkout);
             break;
@@ -43,7 +43,7 @@ public class Hotel {
         break;
       case QUEEN:
         for (int i = 6; i < 9; i++) {
-          Room room = rooms.get(i);
+          Room room = rooms[i];
           if (room.isAvailable(checkin, checkout)) {
             room.createReservation(checkin, checkout);
             break;
@@ -53,7 +53,7 @@ public class Hotel {
         break;
       case KING:
         for (int i = 9; i < 12; i++) {
-          Room room = rooms.get(i);
+          Room room = rooms[i];
           if (room.isAvailable(checkin, checkout)) {
             room.createReservation(checkin, checkout);
             break;
@@ -68,7 +68,7 @@ public class Hotel {
     switch (type) {
       case SINGLE:
         for (int i = 0; i < 3; i++) {
-          Room room = rooms.get(i);
+          Room room = rooms[i];
           if (room.isAvailable(date)) {
             return true;
           }
@@ -77,7 +77,7 @@ public class Hotel {
         return false;
       case DOUBLE:
         for (int i = 3; i < 6; i++) {
-          Room room = rooms.get(i);
+          Room room = rooms[i];
           if (room.isAvailable(date)) {
             return true;
           }
@@ -86,7 +86,7 @@ public class Hotel {
         return false;
       case QUEEN:
         for (int i = 6; i < 9; i++) {
-          Room room = rooms.get(i);
+          Room room = rooms[i];
           if (room.isAvailable(date)) {
             return true;
           }
@@ -95,7 +95,7 @@ public class Hotel {
         return false;
       case KING:
         for (int i = 9; i < 12; i++) {
-          Room room = rooms.get(i);
+          Room room = rooms[i];
           if (room.isAvailable(date)) {
             return true;
           }
