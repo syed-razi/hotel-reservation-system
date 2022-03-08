@@ -6,15 +6,19 @@ public class Hotel {
 
   public Hotel() {
     Type type = Type.SINGLE;
+    int price = 100;
     for (int i = 0; i < 12; i++) {
       if (i >= 3 && i < 6) {
         type = Type.DOUBLE;
+        price = 200;
       } else if (i >= 6 && i < 9) {
         type = Type.QUEEN;
+        price = 300;
       } else if (i >= 9 && i < 12) {
         type = Type.KING;
+        price = 400;
       }
-      Room room = new Room(i, type);
+      Room room = new Room(i, type, price);
       rooms[i] = room;
     }
   }

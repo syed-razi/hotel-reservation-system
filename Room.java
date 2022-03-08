@@ -7,9 +7,10 @@ public class Room {
   private int price;
   private HashMap<String, Reservation> reservations = new HashMap<>();
 
-  public Room(int number, Type type) {
+  public Room(int number, Type type, int price) {
     this.number = number;
     this.type = type;
+    this.price = price;
   }
 
   public boolean isAvailable(LocalDate date) {
