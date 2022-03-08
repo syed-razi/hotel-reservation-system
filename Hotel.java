@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.*;
 
 public class Hotel {
@@ -15,6 +16,51 @@ public class Hotel {
       }
       Room room = new Room(i, type);
       rooms.put(i, room);
+    }
+  }
+
+  public void createReservation(Type type, LocalDate checkin, LocalDate checkout) {
+    switch(type) {
+      case SINGLE:
+        for(int i = 0; i < 3; i++) {
+          Room room = rooms.get(i);
+          if(room.isAvailable(checkin, checkout)) {
+            room.createReservation(checkin, checkout);
+            break;
+          }
+          System.out.println("No single rooms available.");
+        }
+        break;
+      case DOUBLE:
+        for(int i = 3; i < 6; i++) {
+          Room room = rooms.get(i);
+          if(room.isAvailable(checkin, checkout)) {
+            room.createReservation(checkin, checkout);
+            break;
+          }
+          System.out.println("No double rooms available.");
+        }
+        break;
+      case QUEEN:
+        for(int i = 6; i < 9; i++) {
+          Room room = rooms.get(i);
+          if(room.isAvailable(checkin, checkout)) {
+            room.createReservation(checkin, checkout);
+            break;
+          }
+          System.out.println("No queen rooms available.");
+        }
+        break;
+      case KING:
+        for(int i = 9; i < 12; i++) {
+          Room room = rooms.get(i);
+          if(room.isAvailable(checkin, checkout)) {
+            room.createReservation(checkin, checkout);
+            break;
+          }
+          System.out.println("No king rooms available.");
+        }
+        break;
     }
   }
 }
