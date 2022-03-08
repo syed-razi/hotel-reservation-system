@@ -3,15 +3,15 @@ import java.util.*;
 
 public class Hotel {
   private HashMap<Integer, Room> rooms = new HashMap<>();
-  
+
   public Hotel() {
     Type type = Type.SINGLE;
-    for(int i = 0; i < 12; i++) {
-      if(i >= 3 && i < 6) {
+    for (int i = 0; i < 12; i++) {
+      if (i >= 3 && i < 6) {
         type = Type.DOUBLE;
-      } else if(i >= 6 && i < 9) {
+      } else if (i >= 6 && i < 9) {
         type = Type.QUEEN;
-      } else if(i >= 9 && i < 12) {
+      } else if (i >= 9 && i < 12) {
         type = Type.KING;
       }
       Room room = new Room(i, type);
@@ -20,11 +20,11 @@ public class Hotel {
   }
 
   public void createReservation(Type type, LocalDate checkin, LocalDate checkout) {
-    switch(type) {
+    switch (type) {
       case SINGLE:
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
           Room room = rooms.get(i);
-          if(room.isAvailable(checkin, checkout)) {
+          if (room.isAvailable(checkin, checkout)) {
             room.createReservation(checkin, checkout);
             break;
           }
@@ -32,9 +32,9 @@ public class Hotel {
         }
         break;
       case DOUBLE:
-        for(int i = 3; i < 6; i++) {
+        for (int i = 3; i < 6; i++) {
           Room room = rooms.get(i);
-          if(room.isAvailable(checkin, checkout)) {
+          if (room.isAvailable(checkin, checkout)) {
             room.createReservation(checkin, checkout);
             break;
           }
@@ -42,9 +42,9 @@ public class Hotel {
         }
         break;
       case QUEEN:
-        for(int i = 6; i < 9; i++) {
+        for (int i = 6; i < 9; i++) {
           Room room = rooms.get(i);
-          if(room.isAvailable(checkin, checkout)) {
+          if (room.isAvailable(checkin, checkout)) {
             room.createReservation(checkin, checkout);
             break;
           }
@@ -52,15 +52,58 @@ public class Hotel {
         }
         break;
       case KING:
-        for(int i = 9; i < 12; i++) {
+        for (int i = 9; i < 12; i++) {
           Room room = rooms.get(i);
-          if(room.isAvailable(checkin, checkout)) {
+          if (room.isAvailable(checkin, checkout)) {
             room.createReservation(checkin, checkout);
             break;
           }
           System.out.println("No king rooms available.");
         }
         break;
+    }
+  }
+
+  public boolean isRoomTypeAvailable(Type type, LocalDate date) {
+    switch (type) {
+      case SINGLE:
+        for (int i = 0; i < 3; i++) {
+          Room room = rooms.get(i);
+          if (room.isAvailable(date)) {
+            return true;
+          }
+        }
+        System.out.println("No single rooms available on " + date.toString());
+        return false;
+      case DOUBLE:
+        for (int i = 3; i < 6; i++) {
+          Room room = rooms.get(i);
+          if (room.isAvailable(date)) {
+            return true;
+          }
+        }
+        System.out.println("No double rooms available on " + date.toString());
+        return false;
+      case QUEEN:
+        for (int i = 6; i < 9; i++) {
+          Room room = rooms.get(i);
+          if (room.isAvailable(date)) {
+            return true;
+          }
+        }
+        System.out.println("No queen rooms available on " + date.toString());
+        return false;
+      case KING:
+        for (int i = 9; i < 12; i++) {
+          Room room = rooms.get(i);
+          if (room.isAvailable(date)) {
+            return true;
+          }
+        }
+        System.out.println("No king rooms available on " + date.toString());
+        return false;
+      default:
+        return false;
     }
   }
 }

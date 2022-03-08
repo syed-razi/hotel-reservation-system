@@ -12,6 +12,16 @@ public class Room {
     this.type = type;
   }
 
+  public boolean isAvailable(LocalDate date) {
+    for(String reservationId : reservations.keySet()) {
+      Reservation reservation = reservations.get(reservationId);
+      if(reservation.getCheckoutDate().isBefore(date) || reservation.getCheckinDate().isAfter(checkout)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public boolean isAvailable(LocalDate checkin, LocalDate checkout) {
     for(String reservationId : reservations.keySet()) {
       Reservation reservation = reservations.get(reservationId);
