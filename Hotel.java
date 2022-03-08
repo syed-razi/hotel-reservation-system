@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Hotel {
-  HashMap<Integer, Room> rooms = new HashMap<>();
+  private HashMap<Integer, Room> rooms = new HashMap<>();
   
   public Hotel() {
     Type type = Type.SINGLE;
