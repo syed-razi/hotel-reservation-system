@@ -28,8 +28,8 @@ public class Hotel {
             room.createReservation(checkin, checkout);
             break;
           }
-          System.out.println("No single rooms available.");
         }
+        System.out.println("No single rooms available.");
         break;
       case DOUBLE:
         for (int i = 3; i < 6; i++) {
@@ -38,8 +38,8 @@ public class Hotel {
             room.createReservation(checkin, checkout);
             break;
           }
-          System.out.println("No double rooms available.");
         }
+        System.out.println("No double rooms available.");
         break;
       case QUEEN:
         for (int i = 6; i < 9; i++) {
@@ -48,8 +48,8 @@ public class Hotel {
             room.createReservation(checkin, checkout);
             break;
           }
-          System.out.println("No queen rooms available.");
         }
+        System.out.println("No queen rooms available.");
         break;
       case KING:
         for (int i = 9; i < 12; i++) {
@@ -58,8 +58,8 @@ public class Hotel {
             room.createReservation(checkin, checkout);
             break;
           }
-          System.out.println("No king rooms available.");
         }
+        System.out.println("No king rooms available.");
         break;
     }
   }
