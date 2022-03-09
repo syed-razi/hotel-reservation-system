@@ -48,6 +48,14 @@ public class Room {
     offers.add(offer);
   }
 
+  public int getRoomNumber() {
+    return number;
+  }
+
+  public Type getRoomType() {
+    return type;
+  }
+
   private int calculateTotal(LocalDate checkin, LocalDate checkout) {
     int total = 0;
     for (LocalDate date = checkin; date.isEqual(checkout); date = date.plusDays(1)) {
