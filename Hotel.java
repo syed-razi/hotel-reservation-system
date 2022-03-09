@@ -116,4 +116,10 @@ public class Hotel {
       rooms[i].updatePrice(newPrice);
     }
   }
+
+  public void changePriceOfRooms(int offerPrice, int roomStart, int roomEnd, LocalDate startDate, LocalDate endDate) {
+    for(int i = roomStart; i <= roomEnd; i++) {
+      rooms[i].applyOffer(offerPrice, startDate, endDate);
+    }
+  }
 }
