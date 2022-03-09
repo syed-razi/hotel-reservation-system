@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.util.*;
 
 public class Hotel {
   private Room[] rooms = new Room[12];
@@ -33,7 +32,6 @@ public class Hotel {
             break;
           }
         }
-        System.out.println("No single rooms available.");
         break;
       case DOUBLE:
         for (int i = 3; i < 6; i++) {
@@ -43,7 +41,6 @@ public class Hotel {
             break;
           }
         }
-        System.out.println("No double rooms available.");
         break;
       case QUEEN:
         for (int i = 6; i < 9; i++) {
@@ -53,7 +50,6 @@ public class Hotel {
             break;
           }
         }
-        System.out.println("No queen rooms available.");
         break;
       case KING:
         for (int i = 9; i < 12; i++) {
@@ -63,7 +59,6 @@ public class Hotel {
             break;
           }
         }
-        System.out.println("No king rooms available.");
         break;
     }
   }
@@ -77,7 +72,6 @@ public class Hotel {
             return true;
           }
         }
-        System.out.println("No single rooms available on " + date.toString());
         return false;
       case DOUBLE:
         for (int i = 3; i < 6; i++) {
@@ -86,7 +80,6 @@ public class Hotel {
             return true;
           }
         }
-        System.out.println("No double rooms available on " + date.toString());
         return false;
       case QUEEN:
         for (int i = 6; i < 9; i++) {
@@ -95,7 +88,6 @@ public class Hotel {
             return true;
           }
         }
-        System.out.println("No queen rooms available on " + date.toString());
         return false;
       case KING:
         for (int i = 9; i < 12; i++) {
@@ -104,7 +96,45 @@ public class Hotel {
             return true;
           }
         }
-        System.out.println("No king rooms available on " + date.toString());
+        return false;
+      default:
+        return false;
+    }
+  }
+
+  public boolean isRoomTypeAvailable(Type type, LocalDate startDate, LocalDate endDate) {
+    switch (type) {
+      case SINGLE:
+        for (int i = 0; i < 3; i++) {
+          Room room = rooms[i];
+          if (room.isAvailable(startDate, endDate)) {
+            return true;
+          }
+        }
+        return false;
+      case DOUBLE:
+        for (int i = 3; i < 6; i++) {
+          Room room = rooms[i];
+          if (room.isAvailable(startDate, endDate)) {
+            return true;
+          }
+        }
+        return false;
+      case QUEEN:
+        for (int i = 6; i < 9; i++) {
+          Room room = rooms[i];
+          if (room.isAvailable(startDate, endDate)) {
+            return true;
+          }
+        }
+        return false;
+      case KING:
+        for (int i = 9; i < 12; i++) {
+          Room room = rooms[i];
+          if (room.isAvailable(startDate, endDate)) {
+            return true;
+          }
+        }
         return false;
       default:
         return false;
