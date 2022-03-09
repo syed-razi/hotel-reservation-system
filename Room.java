@@ -5,7 +5,7 @@ public class Room {
   private int number;
   private Type type;
   private int price;
-  private HashMap<String, Reservation> reservations = new HashMap<>();
+  private List<Reservation> reservations = new ArrayList<>();
   private List<Offer> offers = new ArrayList<>();
 
   public Room(int number, Type type, int price) {
@@ -15,9 +15,8 @@ public class Room {
   }
 
   public boolean isAvailable(LocalDate date) {
-    for (String reservationId : reservations.keySet()) {
-      Reservation reservation = reservations.get(reservationId);
-      if (reservation.getCheckoutDate().isBefore(date) || reservation.getCheckinDate().isAfter(checkout)) {
+    for (Reservation reservation : reservations) {
+      if (reservation.getCheckoutDate().isBefore(date) || reservation.getCheckinDate().isAfter(date)) {
         return true;
       }
     }
@@ -25,8 +24,7 @@ public class Room {
   }
 
   public boolean isAvailable(LocalDate checkin, LocalDate checkout) {
-    for (String reservationId : reservations.keySet()) {
-      Reservation reservation = reservations.get(reservationId);
+    for (Reservation reservation : reservations) {
       if (reservation.getCheckoutDate().isBefore(checkin) || reservation.getCheckinDate().isAfter(checkout)) {
         return true;
       }
@@ -35,10 +33,9 @@ public class Room {
   }
 
   public void createReservation(LocalDate checkin, LocalDate checkout) {
-    String reservationId = Integer.toString(number) + checkin.toString() + checkout.toString();
     int totalPrice = calculateTotal(checkin, checkout);
     Reservation reservation = new Reservation(checkin, checkout, totalPrice);
-    reservations.put(reservationId, reservation);
+    reservations.add(reservation);
   }
 
   public void updatePrice(int newPrice) {
