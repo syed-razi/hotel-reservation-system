@@ -15,19 +15,24 @@ public class Room {
   }
 
   public boolean isAvailable(LocalDate date) {
+    if(reservations.size() == 0) {
+      return true;
+    }
     for (Reservation reservation : reservations) {
-      if ((date.isAfter(reservation.getCheckinDate()) || date.isEqual(reservation.getCheckinDate())) 
-        && (date.isBefore(reservation.getCheckoutDate()) || date.isEqual(reservation.getCheckoutDate()))) {
-          return false;
+      if(date.isBefore(reservation.getCheckinDate()) || date.isAfter(reservation.getCheckoutDate())) {
+        return true;
       }
     }
-    return true;
+    return false;
   }
 
   public boolean isAvailable(LocalDate checkin, LocalDate checkout) {
+    if(reservations.size() == 0) {
+      return true;
+    }
     for (Reservation reservation : reservations) {
-      if (reservation.getCheckoutDate().isBefore(checkin) || reservation.getCheckinDate().isAfter(checkout)) {
-        return true;
+      if (checkin.isAfter(reservation.getCheckoutDate()) || checkout.isBefore(reservation.getCheckinDate())) {
+          return true;
       }
     }
     return false;
