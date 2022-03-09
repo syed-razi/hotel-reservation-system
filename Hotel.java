@@ -122,4 +122,8 @@ public class Hotel {
       rooms[i].applyOffer(offerPrice, startDate, endDate);
     }
   }
+
+  public Room[] getRooms() {
+    return rooms;
+  }
 }
