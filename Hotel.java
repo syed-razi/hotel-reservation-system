@@ -117,7 +117,7 @@ public class Hotel {
     }
   }
 
-  public void changePriceOfRooms(int offerPrice, int roomStart, int roomEnd, LocalDate startDate, LocalDate endDate) {
+  public void applyOfferToRooms(int offerPrice, int roomStart, int roomEnd, LocalDate startDate, LocalDate endDate) {
     for(int i = roomStart; i <= roomEnd; i++) {
       rooms[i].applyOffer(offerPrice, startDate, endDate);
     }
