@@ -16,11 +16,12 @@ public class Room {
 
   public boolean isAvailable(LocalDate date) {
     for (Reservation reservation : reservations) {
-      if (reservation.getCheckoutDate().isBefore(date) || reservation.getCheckinDate().isAfter(date)) {
-        return true;
+      if ((date.isAfter(reservation.getCheckinDate()) || date.isEqual(reservation.getCheckinDate())) 
+        && (date.isBefore(reservation.getCheckoutDate()) || date.isEqual(reservation.getCheckoutDate()))) {
+          return false;
       }
     }
-    return false;
+    return true;
   }
 
   public boolean isAvailable(LocalDate checkin, LocalDate checkout) {
